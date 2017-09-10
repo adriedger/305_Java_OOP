@@ -1,1 +1,1 @@
-# Java_Projects_305
+# Macewan University CMPT305 Fall 2017
