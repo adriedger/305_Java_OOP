@@ -25,7 +25,9 @@ public class Months {
                 return;
         }
     }
-    
+    public void addCode(String code) {
+        codes++;
+    }
     public int number () {return monthNumber;}
     public String shortName () {return months[monthNumber].substring (0, 3);}
     public static boolean isMonth (String entry) {
@@ -35,7 +37,5 @@ public class Months {
         }
         return false;
     }
-    public void addCode(String code) {
-        codes++;
-    }
+    public int codeCount() {return codes;}
 }
