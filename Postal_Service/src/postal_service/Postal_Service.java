@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public class Postal_Service {
     
+//    public static List<Months> monthList = new ArrayList<>();    
     /**
      * @param args the command line arguments
      */
@@ -24,18 +25,19 @@ public class Postal_Service {
         // TODO code application logic here
         
         try{
-            Scanner inFile = new Scanner(Paths.get("PostalCodeRecord.txt"));
-            processEntries(inFile);
+            Scanner inFile = new Scanner(Paths.get("PostalCodeRecord.txt"));             
+            MonthList myList = new MonthList(processEntries(inFile));
+            myList.output();
+            
         } 
         catch(IOException ex){
             ex.printStackTrace();
-            System.out.println("Could not find path"); 
-           return;
+            System.out.println("Could not find file path."); 
         }
         
     }
     
-    private static void processEntries(Scanner inFile){
+    private static List<Months> processEntries(Scanner inFile){
         Months current = new Months("January");
         List<Months> monthList = new ArrayList<>();
         while(inFile.hasNextLine()){
@@ -52,6 +54,8 @@ public class Postal_Service {
                 }
             }
         }
+        return monthList;
+        /*
         int officeTotal = 0;
         int truckTotal = 0;
         int airportTotal = 0;
@@ -64,6 +68,6 @@ public class Postal_Service {
         }
         System.out.println(officeTotal+" "+truckTotal+" "+airportTotal+" "+
                 (officeTotal+truckTotal+airportTotal));
-        System.out.println("done");
+        System.out.println("done");*/
     }
 }

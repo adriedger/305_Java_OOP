@@ -18,7 +18,7 @@ public class Months {
     private int airport;
     
     public Months (String entry) {
-        monthNumber = 0;
+//        monthNumber = 1;
         for(String s: months){
             if(!entry.equals(s))
                 monthNumber++;
@@ -38,9 +38,9 @@ public class Months {
             airport++;
         }        
     }
-    public int number () {return monthNumber;}
-    public String shortName () {return months[monthNumber].substring (0, 3);}
-    public static boolean isMonth (String entry) {
+    public int number() {return monthNumber;}
+    public String shortName() {return months[monthNumber].substring (0, 3);}
+    public static boolean isMonth(String entry) {
         for(String s: months){
             if(entry.equals(s))
                 return true;
