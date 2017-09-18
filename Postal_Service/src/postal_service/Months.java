@@ -11,12 +11,13 @@ package postal_service;
  */
 public class Months {
     private static final String[] months = {"January","February","March","April","May","June"
-                ,"July","September","October","November","December"};
+                ,"July","August","September","October","November","December"};
     private int monthNumber;
-    private int codes;
+    private int office;
+    private int truck;
+    private int airport;
     
     public Months (String entry) {
-        codes = 0;
         monthNumber = 0;
         for(String s: months){
             if(!entry.equals(s))
@@ -26,7 +27,16 @@ public class Months {
         }
     }
     public void addCode(String code) {
-        codes++;
+        String first = code.substring(0,1);
+        if(first.equals("T")){
+            office++;
+        }
+        else if(first.equals("V") || first.equals("S")){
+            truck++;
+        }
+        else{
+            airport++;
+        }        
     }
     public int number () {return monthNumber;}
     public String shortName () {return months[monthNumber].substring (0, 3);}
@@ -37,5 +47,7 @@ public class Months {
         }
         return false;
     }
-    public int codeCount() {return codes;}
+    public int officeCount() {return office;}
+    public int truckCount() {return truck;}
+    public int airportCount() {return airport;}
 }

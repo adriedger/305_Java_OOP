@@ -25,16 +25,12 @@ public class Postal_Service {
         
         try{
             Scanner inFile = new Scanner(Paths.get("PostalCodeRecord.txt"));
-/*            while (inFile.hasNextLine()) {
-                String entryLine = inFile.nextLine();
-                System.out.println(entryLine);
-            }*/
             processEntries(inFile);
         } 
         catch(IOException ex){
             ex.printStackTrace();
-            System.out.println("Could not find path");
-            return;
+            System.out.println("Could not find path"); 
+           return;
         }
         
     }
@@ -56,10 +52,18 @@ public class Postal_Service {
                 }
             }
         }
+        int officeTotal = 0;
+        int truckTotal = 0;
+        int airportTotal = 0;
         for(Months s : monthList){
-            System.out.println(s.shortName() +" "+ s.codeCount());
+            officeTotal += s.officeCount();
+            truckTotal += s.truckCount();
+            airportTotal += s.airportCount();
+            System.out.println(s.shortName()+" "+s.officeCount()+" "+s.truckCount()+" "+ s.airportCount()
+                +" "+(s.officeCount()+s.truckCount()+s.airportCount()));
         }
+        System.out.println(officeTotal+" "+truckTotal+" "+airportTotal+" "+
+                (officeTotal+truckTotal+airportTotal));
         System.out.println("done");
     }
-    
 }
