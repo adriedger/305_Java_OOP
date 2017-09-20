@@ -20,9 +20,12 @@ public class Postal_Service {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {        
+    public static void main(String[] args){
+        Scanner console = new Scanner(System.in);
+        System.out.print("Please enter the file name: ");
+        String input = console.nextLine();
         try{
-            Scanner inFile = new Scanner(Paths.get("PostalCodeRecord.txt"));             
+            Scanner inFile = new Scanner(Paths.get(input));             
             MonthList myList = new MonthList(processEntries(inFile));
             myList.output();
             
