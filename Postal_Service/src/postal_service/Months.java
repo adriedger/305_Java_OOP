@@ -18,7 +18,6 @@ public class Months {
     private int airport;
     
     public Months (String entry) {
-//        monthNumber = 1;
         for(String s: months){
             if(!entry.equals(s))
                 monthNumber++;
@@ -28,15 +27,12 @@ public class Months {
     }
     public void addCode(String code) {
         String first = code.substring(0,1);
-        if(first.equals("T")){
-            office++;
-        }
-        else if(first.equals("V") || first.equals("S")){
-            truck++;
-        }
-        else{
-            airport++;
-        }        
+        if(first.equals("T"))
+            office++;       
+        else if(first.equals("V") || first.equals("S"))
+            truck++;       
+        else
+            airport++;            
     }
     public int number() {return monthNumber;}
     public String shortName() {return months[monthNumber].substring (0, 3);}

@@ -25,20 +25,42 @@ public class MonthList {
             }
         });
     }
-    private Months minOffice(){
-        Months min = list.get(0);
+    private List<Months> minMonths(){
+        List<Months> minMonths = new ArrayList<>();
+        Months minOffice = list.get(0);
+        Months minTruck = list.get(0);
+        Months minAirport = list.get(0);
         for(Months m : list){
-            if(m.officeCount() < min.officeCount()){
-                min = m;
-            }
+            if(m.officeCount() < minOffice.officeCount())
+                minOffice = m;
+            if(m.truckCount() < minTruck.truckCount())
+                minTruck = m;
+            if(m.airportCount() < minAirport.airportCount())
+                minAirport = m;
         }
-        return min;
+        minMonths.add(minOffice);
+        minMonths.add(minTruck);
+        minMonths.add(minAirport);
+        return minMonths;
     }
-//    private int minTruck(){}
-//    private int minAirport(){}
-//    private int maxOffice(){}
-//    private int maxTruck(){}
-//    private int maxAirport(){}
+    private List<Months> maxMonths(){
+        List<Months> maxMonths = new ArrayList<>();
+        Months maxOffice = list.get(0);
+        Months maxTruck = list.get(0);
+        Months maxAirport = list.get(0);
+        for(Months m : list){
+            if(m.officeCount() > maxOffice.officeCount())
+                maxOffice = m;
+            if(m.truckCount() > maxTruck.truckCount())
+                maxTruck = m;
+            if(m.airportCount() > maxAirport.airportCount())
+                maxAirport = m;
+        }
+        maxMonths.add(maxOffice);
+        maxMonths.add(maxTruck);
+        maxMonths.add(maxAirport);
+        return maxMonths;
+    }
     public void output(){
         int officeTotal = 0;
         int truckTotal = 0;
@@ -52,6 +74,15 @@ public class MonthList {
         }
         System.out.println(officeTotal+" "+truckTotal+" "+airportTotal+" "+
                 (officeTotal+truckTotal+airportTotal));
-        System.out.println(minOffice().officeCount()+" "+minOffice().shortName());
+        List<Months> min = new ArrayList<>();
+        min = minMonths();
+        System.out.println(min.get(0).officeCount()+" "+min.get(0).shortName());
+        System.out.println(min.get(1).truckCount()+" "+min.get(1).shortName());
+        System.out.println(min.get(2).airportCount()+" "+min.get(2).shortName());
+        List<Months> max = new ArrayList<>();
+        max = maxMonths();
+        System.out.println(max.get(0).officeCount()+" "+max.get(0).shortName());
+        System.out.println(max.get(1).truckCount()+" "+max.get(1).shortName());
+        System.out.println(max.get(2).airportCount()+" "+max.get(2).shortName());
     }
 }

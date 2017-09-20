@@ -17,13 +17,10 @@ import java.util.ArrayList;
  */
 public class Postal_Service {
     
-//    public static List<Months> monthList = new ArrayList<>();    
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        
+    public static void main(String[] args) {        
         try{
             Scanner inFile = new Scanner(Paths.get("PostalCodeRecord.txt"));             
             MonthList myList = new MonthList(processEntries(inFile));
@@ -55,19 +52,5 @@ public class Postal_Service {
             }
         }
         return monthList;
-        /*
-        int officeTotal = 0;
-        int truckTotal = 0;
-        int airportTotal = 0;
-        for(Months s : monthList){
-            officeTotal += s.officeCount();
-            truckTotal += s.truckCount();
-            airportTotal += s.airportCount();
-            System.out.println(s.shortName()+" "+s.officeCount()+" "+s.truckCount()+" "+ s.airportCount()
-                +" "+(s.officeCount()+s.truckCount()+s.airportCount()));
-        }
-        System.out.println(officeTotal+" "+truckTotal+" "+airportTotal+" "+
-                (officeTotal+truckTotal+airportTotal));
-        System.out.println("done");*/
     }
 }
