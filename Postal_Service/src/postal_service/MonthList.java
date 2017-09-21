@@ -16,6 +16,12 @@ import java.util.Comparator;
  */
 public class MonthList {
     private static List<Months> list = new ArrayList<>();
+    private Months minOffice;
+    private Months minTruck;
+    private Months minAirport;
+    private Months maxOffice;
+    private Months maxTruck;
+    private Months maxAirport;
     
     public MonthList(List<Months> input){
         list = input;
@@ -24,10 +30,6 @@ public class MonthList {
                 return o1.number() < o2.number() ? -1 : o1.number() == o2.number() ? 0 : 1;
             }
         });
-    }
-    private List<Months> minMax(){
-        List<Months> minMax = new ArrayList<>();
-        Months minOffice, minTruck, minAirport, maxOffice, maxTruck ,maxAirport;
         minOffice = minTruck = minAirport = maxOffice = maxTruck = maxAirport = list.get(0);
         for(Months m : list){
             if(m.officeCount() < minOffice.officeCount())
@@ -43,14 +45,8 @@ public class MonthList {
             if(m.airportCount() > maxAirport.airportCount())
                 maxAirport = m;
         }
-        minMax.add(minOffice);
-        minMax.add(minTruck);
-        minMax.add(minAirport);
-        minMax.add(maxOffice);
-        minMax.add(maxTruck);
-        minMax.add(maxAirport);
-        return minMax;
     }
+
     public void output(){
         System.out.println("    Office Truck Airport Total/Month");
         int officeTotal = 0;
@@ -65,12 +61,11 @@ public class MonthList {
         }
         System.out.format("%10d%6d%8d%8d\n",officeTotal,truckTotal,airportTotal
                 ,(officeTotal+truckTotal+airportTotal));
-        List<Months> minMax = minMax();
-        System.out.println("Min(Post Office): "+minMax.get(0).officeCount()+","+minMax.get(0).shortName());
-        System.out.println("Min(Truck Depot): "+minMax.get(1).truckCount()+","+minMax.get(1).shortName());
-        System.out.println("Min(Airport): "+minMax.get(2).airportCount()+","+minMax.get(2).shortName());
-        System.out.println("Max(Post Office): "+minMax.get(3).officeCount()+","+minMax.get(3).shortName());
-        System.out.println("Max(Truck Depot): "+minMax.get(4).truckCount()+","+minMax.get(4).shortName());
-        System.out.println("Max(Airport): "+minMax.get(5).airportCount()+","+minMax.get(5).shortName());
+        System.out.println("Min(Post Office): "+minOffice.officeCount()+","+minOffice.shortName());
+        System.out.println("Min(Truck Depot): "+minTruck.truckCount()+","+minTruck.shortName());
+        System.out.println("Min(Airport): "+minAirport.airportCount()+","+minAirport.shortName());
+        System.out.println("Max(Post Office): "+maxOffice.officeCount()+","+maxOffice.shortName());
+        System.out.println("Max(Truck Depot): "+maxTruck.truckCount()+","+maxTruck.shortName());
+        System.out.println("Max(Airport): "+maxAirport.airportCount()+","+maxAirport.shortName());
     }
 }
