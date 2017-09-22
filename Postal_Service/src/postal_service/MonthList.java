@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Macewan University CMPT 305 Professor:Brian Brookwell
  */
 package postal_service;
 
@@ -23,6 +21,11 @@ public class MonthList {
     private Months maxTruck;
     private Months maxAirport;
     
+    /**
+     * sorts list of months into calendar order
+     * finds min and max of each destination
+     * @param input list of months
+     */
     public MonthList(List<Months> input){
         list = input;
         Collections.sort(list, new Comparator<Months>() {
@@ -46,7 +49,9 @@ public class MonthList {
                 maxAirport = m;
         }
     }
-
+    /**
+     * outputs info onto console
+     */
     public void output(){
         System.out.println("    Office Truck Airport Total/Month");
         int officeTotal = 0;
@@ -56,10 +61,10 @@ public class MonthList {
             officeTotal += m.officeCount();
             truckTotal += m.truckCount();
             airportTotal += m.airportCount();
-            System.out.format("%3s%7d%6d%8d%8d\n",m.shortName(),m.officeCount(),m.truckCount(),m.airportCount()
+            System.out.format("%3s%6d%7d%8d%8d\n",m.shortName(),m.officeCount(),m.truckCount(),m.airportCount()
                 ,(m.officeCount()+m.truckCount()+m.airportCount()));
         }
-        System.out.format("%10d%6d%8d%8d\n",officeTotal,truckTotal,airportTotal
+        System.out.format("%9d%7d%8d%8d\n",officeTotal,truckTotal,airportTotal
                 ,(officeTotal+truckTotal+airportTotal));
         System.out.println("Min(Post Office): "+minOffice.officeCount()+","+minOffice.shortName());
         System.out.println("Min(Truck Depot): "+minTruck.truckCount()+","+minTruck.shortName());
