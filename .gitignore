@@ -22,8 +22,8 @@
 hs_err_pid*
 
 /Java Basic Demos/build/
-/Java Basic Demos/nbproject/
+/Java Basic Demos/nbproject/private/
 /Postal_Service/build/
-/Postal_Service/nbproject/
-/FreeCell/nbproject/
+/Postal_Service/nbproject/private
+/FreeCell/nbproject/private
 /FreeCell/build/
