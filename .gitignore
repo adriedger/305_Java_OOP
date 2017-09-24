@@ -22,4 +22,6 @@
 hs_err_pid*
 
 Postal_Service/build/
-Postal_Service/nbproject/private/
+Postal_Service/nbproject/
+/FreeCell/nbproject/
+/FreeCell/build/
