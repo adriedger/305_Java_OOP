@@ -24,8 +24,8 @@ public enum Rank {
     QUEEN('Q', 12),
     KING('K', 13);
         
-    private char symbol;
-    private int value;
+    private final char symbol;
+    private final int value;
     
     Rank(char symbol, int value){
         this.symbol = symbol;
@@ -33,6 +33,11 @@ public enum Rank {
     }
     
     public char getSymbol() {return symbol;}
-    public int getRank() {return value;}
-    
+    public int getValue() {return value;}
+    public boolean isNextLess(Card dest) {
+        return dest.getRank().getValue() == (value-1);
+    }
+//    public boolean isNextGreater(Card dest) {
+//        return dest.getRank().getValue() == (value+1);
+//    }     
 }

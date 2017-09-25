@@ -25,6 +25,13 @@ public class Cell {
     public int getSize() {return stack.size();}
     public Card getCard(int num) {return stack.get(num);}
     public String getName() {return name;}
+    public boolean isEmpty() {return stack.isEmpty();}
+    public Card getTop() {
+        if(!this.isEmpty())
+            return stack.get(stack.size()-1);
+        else
+            return null;
+    }
     public void printStack() {
         if(stack.isEmpty()){
             System.out.println("Empty");
@@ -33,5 +40,21 @@ public class Cell {
             for(Card c : stack)
                 c.print();
         }
+    }
+    
+    public boolean canMoveFrom(){
+        return false;
+    }
+    public boolean canMoveTo(Card moving){
+        return false;
+    }
+    public void moveFrom(Cell dest){
+        if(this.canMoveFrom() && dest.canMoveTo(this.getTop())){
+//            Card current = this.getTop();
+//            stack.remove(this.getSize() - 1);
+            System.out.println("Succesfull Move!");
+        }
+        else
+            System.out.println("Illegal Move");
     }
 }

@@ -21,5 +21,7 @@ public class Card {
     public void print() {
         System.out.println(rank.getSymbol() + " " + suit.getSymbol());      
     }
+    public Rank getRank() {return rank;}
+    public Suit getSuit() {return suit;}
     
 }

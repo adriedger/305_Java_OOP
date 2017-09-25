@@ -46,6 +46,12 @@ public class FreeCell {
         Frees.add(new Free("F2"));
         Frees.add(new Free("F3"));
         
+        List<Home> Homes = new ArrayList<>();
+        Homes.add(new Home("H0"));
+        Homes.add(new Home("H1"));
+        Homes.add(new Home("H2"));
+        Homes.add(new Home("H3"));
+        
         for(Tableau t : Tabs){
             System.out.println(t.getName() + "----" + t.getSize()); 
             t.printStack();                      
@@ -53,6 +59,25 @@ public class FreeCell {
         for(Free f : Frees){
             System.out.println(f.getName() + "----" + f.getSize()); 
             f.printStack();                      
-        }        
+        }
+        for(Home h : Homes){
+            System.out.println(h.getName() + "----" + h.getSize()); 
+            h.printStack();                      
+        }
+        Frees.get(0).moveFrom(Homes.get(0));
+        /*
+        for(Tableau t : Tabs){
+            System.out.println(t.getName() + "----" + t.getSize()); 
+            t.printStack();                      
+        }
+        for(Free f : Frees){
+            System.out.println(f.getName() + "----" + f.getSize()); 
+            f.printStack();                      
+        }
+        for(Home h : Homes){
+            System.out.println(h.getName() + "----" + h.getSize()); 
+            h.printStack();                      
+        }
+        */
     }
 }

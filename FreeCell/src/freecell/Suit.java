@@ -15,8 +15,8 @@ public enum Suit {
     SPADES(false, '\u2660'),
     CLUBS(false, '\u2663');
     
-    private boolean isRed;    
-    private char unicode;    
+    private final boolean isRed;    
+    private final char unicode;    
     
     Suit(boolean isRed, char unicode){       
         this.isRed = isRed;
@@ -25,5 +25,7 @@ public enum Suit {
     
     public boolean isRed() {return isRed;}
     public char getSymbol() {return unicode;}
-
+    public boolean isDiffColor(Card dest){
+        return dest.getSuit().isRed() != this.isRed();
+    }
 }

@@ -17,4 +17,12 @@ public class Free extends Cell {
        super(new ArrayList<>(), name);
     }
     
+    @Override
+    public boolean canMoveFrom(){
+        return super.getSize() > 0;        
+    }
+    @Override
+    public boolean canMoveTo(Card moving){
+        return super.isEmpty();
+    }
 }
