@@ -64,7 +64,26 @@ public class FreeCell {
             System.out.println(h.getName() + "----" + h.getSize()); 
             h.printStack();                      
         }
-        Frees.get(0).moveFrom(Homes.get(0));
+        Tabs.get(0).move(Frees.get(0));
+        Tabs.get(0).printStack();
+        System.out.println("-----");
+        Frees.get(0).printStack();
+//        List<Tableau> oldTabs = Tabs;
+//        List<Free> oldFrees = Frees;
+//        Tabs.clear();
+//        Tabs = new ArrayList<>(oldTabs);
+//        Frees = new ArrayList<>(oldFrees);
+//        System.out.println(Tabs.get(0).getClass());
+//        Tableau origin = Tabs.get(0);
+//        Free dest = Frees.get(0);
+//        origin.move(dest);
+//        Tabs.remove(0);
+//        Tabs.set(0, Tabs.get(0));
+//        Frees.set(0, Frees.get(0));
+//        origin.printStack();
+//        System.out.println("-----");
+//        dest.printStack();
+       
         /*
         for(Tableau t : Tabs){
             System.out.println(t.getName() + "----" + t.getSize()); 

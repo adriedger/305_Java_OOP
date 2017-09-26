@@ -48,11 +48,11 @@ public class Cell {
     public boolean canMoveTo(Card moving){
         return false;
     }
-    public void moveFrom(Cell dest){
-        if(this.canMoveFrom() && dest.canMoveTo(this.getTop())){
-//            Card current = this.getTop();
-//            stack.remove(this.getSize() - 1);
+    public void move(Cell dest){
+        if(this.canMoveFrom() && dest.canMoveTo(this.getTop())){            
             System.out.println("Succesfull Move!");
+            dest.stack.add(this.getTop());
+            this.stack.remove(this.getTop());            
         }
         else
             System.out.println("Illegal Move");
