@@ -27,47 +27,17 @@ public class FreeCell {
             }
         }
         Collections.shuffle(deck);
-//        for(Card c : deck){
-//            c.print();            
-//        }
-        List<Tableau> Tabs = new ArrayList<>();
-        Tabs.add(new Tableau(deck.subList(0, 7), "T0"));
-        Tabs.add(new Tableau(deck.subList(7, 14), "T1"));
-        Tabs.add(new Tableau(deck.subList(14, 21), "T2"));
-        Tabs.add(new Tableau(deck.subList(21, 28), "T3"));
-        Tabs.add(new Tableau(deck.subList(28, 34), "T4"));
-        Tabs.add(new Tableau(deck.subList(34, 40), "T5"));
-        Tabs.add(new Tableau(deck.subList(40, 46), "T6"));
-        Tabs.add(new Tableau(deck.subList(46, 52), "T7"));
+        State state = new State(deck);
+        state.printState();        
+        state.move("T0", "H0");
+        state.printState();
+
         
-        List<Free> Frees = new ArrayList<>();
-        Frees.add(new Free("F0"));
-        Frees.add(new Free("F1"));
-        Frees.add(new Free("F2"));
-        Frees.add(new Free("F3"));
-        
-        List<Home> Homes = new ArrayList<>();
-        Homes.add(new Home("H0"));
-        Homes.add(new Home("H1"));
-        Homes.add(new Home("H2"));
-        Homes.add(new Home("H3"));
-        
-        for(Tableau t : Tabs){
-            System.out.println(t.getName() + "----" + t.getSize()); 
-            t.printStack();                      
-        }
-        for(Free f : Frees){
-            System.out.println(f.getName() + "----" + f.getSize()); 
-            f.printStack();                      
-        }
-        for(Home h : Homes){
-            System.out.println(h.getName() + "----" + h.getSize()); 
-            h.printStack();                      
-        }
-        Tabs.get(0).move(Frees.get(0));
-        Tabs.get(0).printStack();
-        System.out.println("-----");
-        Frees.get(0).printStack();
+
+//        Tabs.get(0).move(Frees.get(0));
+//        Tabs.get(0).printStack();
+//        System.out.println("-----");
+//        Frees.get(0).printStack();
 //        List<Tableau> oldTabs = Tabs;
 //        List<Free> oldFrees = Frees;
 //        Tabs.clear();
@@ -84,19 +54,7 @@ public class FreeCell {
 //        System.out.println("-----");
 //        dest.printStack();
        
-        /*
-        for(Tableau t : Tabs){
-            System.out.println(t.getName() + "----" + t.getSize()); 
-            t.printStack();                      
-        }
-        for(Free f : Frees){
-            System.out.println(f.getName() + "----" + f.getSize()); 
-            f.printStack();                      
-        }
-        for(Home h : Homes){
-            System.out.println(h.getName() + "----" + h.getSize()); 
-            h.printStack();                      
-        }
-        */
     }
+    
+    
 }

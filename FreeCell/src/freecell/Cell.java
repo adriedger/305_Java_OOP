@@ -33,6 +33,7 @@ public class Cell {
             return null;
     }
     public void printStack() {
+        System.out.println(this.getName() + "----" + this.getSize());
         if(stack.isEmpty()){
             System.out.println("Empty");
         }
