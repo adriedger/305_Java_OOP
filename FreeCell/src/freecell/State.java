@@ -44,7 +44,8 @@ public class State {
         
     }
     
-    public void printState(){        
+    public void printState(){
+        
         for(Tableau t: Tabs){
             System.out.println(t.toString());            
         }
@@ -53,6 +54,24 @@ public class State {
         }
         for(Home h : Homes){
             System.out.println(h.toString());            
-        }        
+        } 
+        
+//        List<Tableau> TabsCopy = new ArrayList<>(Tabs);
+//        System.out.println(Tabs.get(0).toString());
+//        System.out.println(Tabs.get(1).toString()); 
+//        System.out.println(Tabs.get(2).toString()); 
+//        System.out.println(Tabs.get(3).toString()); 
+//        System.out.println(Tabs.get(4).toString()); 
+//        System.out.println(Tabs.get(5).toString()); 
+//        System.out.println(Tabs.get(6).toString());
+//        System.out.println(Tabs.get(7).toString()); 
+//        System.out.println(Frees.get(0).toString());
+//        System.out.println(Frees.get(1).toString()); 
+//        System.out.println(Frees.get(2).toString()); 
+//        System.out.println(Frees.get(3).toString());
+//        System.out.println(Homes.get(0).toString());
+//        System.out.println(Homes.get(1).toString());
+//        System.out.println(Homes.get(2).toString());
+//        System.out.println(Homes.get(3).toString());      
     }    
 }
