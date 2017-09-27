@@ -32,15 +32,11 @@ public class Cell {
         else
             return null;
     }
-    public void printStack() {
-        System.out.println(this.getName() + "----" + this.getSize());
-        if(stack.isEmpty()){
-            System.out.println("Empty");
-        }
-        else{            
-            for(Card c : stack)
-                c.print();
-        }
+    public String toString() {
+        String out = this.getName() + "----" + this.getSize() + ": ";         
+        for(Card c : stack)
+            out = out + c.toString() + ", ";
+        return out;
     }
     
     public boolean canMoveFrom(){

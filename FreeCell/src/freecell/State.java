@@ -1,5 +1,5 @@
 /*
- * Macewan University CMPT 305 Proffesor:Brian Brookwell
+ * Macewan University CMPT 305 Professor:Brian Brookwell
  */
 package freecell;
 
@@ -12,9 +12,9 @@ import java.util.List;
  */
 public class State {
     
-    List<Tableau> Tabs = new ArrayList<>();    
-    List<Free> Frees = new ArrayList<>();
-    List<Home> Homes = new ArrayList<>();
+    private List<Tableau> Tabs = new ArrayList<>();    
+    private List<Free> Frees = new ArrayList<>();
+    private List<Home> Homes = new ArrayList<>();
     
     public State(List<Card> deck){
         Tabs.add(new Tableau(deck.subList(0, 7), "T0"));
@@ -46,13 +46,13 @@ public class State {
     
     public void printState(){        
         for(Tableau t: Tabs){
-            t.printStack();            
+            System.out.println(t.toString());            
         }
         for(Free f : Frees){
-            f.printStack();     
+            System.out.println(f.toString());            
         }
         for(Home h : Homes){
-            h.printStack();            
+            System.out.println(h.toString());            
         }        
     }    
 }

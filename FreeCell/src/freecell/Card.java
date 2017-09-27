@@ -18,8 +18,8 @@ public class Card {
         this.suit = suit;
     }
     
-    public void print() {
-        System.out.println(rank.getSymbol() + " " + suit.getSymbol());      
+    public String toString() {
+        return rank.getSymbol() + "" + suit.getSymbol();      
     }
     public Rank getRank() {return rank;}
     public Suit getSuit() {return suit;}
