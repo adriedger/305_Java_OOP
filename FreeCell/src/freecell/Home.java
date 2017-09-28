@@ -25,7 +25,7 @@ public class Home extends Cell {
         if(super.isEmpty()){
             return moving.getRank().getValue() == 1;
         }
-        else if(super.getTop().getRank().isNextLess(moving) && !super.getTop().getSuit().isDiffColor(moving))
+        else if(super.getTop().getRank().isNextLess(moving) && super.getTop().getSuit().isSameSuit(moving))
             return true;
         return false;
     }

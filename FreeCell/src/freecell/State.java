@@ -34,44 +34,39 @@ public class State {
         Homes.add(new Home("H2"));
         Homes.add(new Home("H3"));
     }
-    
-    
-    public void move(String origin, String dest){
-        Tabs.get(0).move(Frees.get(0));
-//        Tabs.get(0).printStack();
-//        System.out.println("-----");
-//        Frees.get(0).printStack();
+
+    private Cell getCell(String name){
+        Cell cell = Tabs.get(0);
+        for(Tableau t: Tabs){
+            if(name.equals(t.getName()))
+                cell = t;        
+        }
+        for(Free f: Frees){
+            if(name.equals(f.getName()))
+                cell = f;           
+        }
+        for(Home h: Homes){
+            if(name.equals(h.getName()))
+                cell = h;            
+        }
+        return cell;
+    }
         
+    public void move(String origin, String dest){
+        this.getCell(origin).move(this.getCell(dest));        
     }
     
-    public void printState(){
-        
-        for(Tableau t: Tabs){
+    public void printState(){       
+        for(Tableau t: Tabs)
             System.out.println(t.toString());            
-        }
-        for(Free f : Frees){
+        for(Free f : Frees)
             System.out.println(f.toString());            
-        }
-        for(Home h : Homes){
-            System.out.println(h.toString());            
-        } 
-        
-//        List<Tableau> TabsCopy = new ArrayList<>(Tabs);
-//        System.out.println(Tabs.get(0).toString());
-//        System.out.println(Tabs.get(1).toString()); 
-//        System.out.println(Tabs.get(2).toString()); 
-//        System.out.println(Tabs.get(3).toString()); 
-//        System.out.println(Tabs.get(4).toString()); 
-//        System.out.println(Tabs.get(5).toString()); 
-//        System.out.println(Tabs.get(6).toString());
-//        System.out.println(Tabs.get(7).toString()); 
-//        System.out.println(Frees.get(0).toString());
-//        System.out.println(Frees.get(1).toString()); 
-//        System.out.println(Frees.get(2).toString()); 
-//        System.out.println(Frees.get(3).toString());
-//        System.out.println(Homes.get(0).toString());
-//        System.out.println(Homes.get(1).toString());
-//        System.out.println(Homes.get(2).toString());
-//        System.out.println(Homes.get(3).toString());      
-    }    
+        for(Home h : Homes)
+            System.out.println(h.toString());                       
+    }
+    
+    public boolean winCheck(){
+        return Homes.get(0).isComplete() && Homes.get(1).isComplete() &&
+                Homes.get(2).isComplete() && Homes.get(3).isComplete();
+    }
 }

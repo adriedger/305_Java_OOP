@@ -28,4 +28,7 @@ public enum Suit {
     public boolean isDiffColor(Card dest){
         return dest.getSuit().isRed() != this.isRed();
     }
+    public boolean isSameSuit(Card compare){
+        return this.equals(compare.getSuit());
+    }
 }

@@ -31,9 +31,9 @@ public class Cell {
     public Card getTop() {
         if(!this.isEmpty())
             return stack.get(stack.size()-1);
-        else
-            return null;
+        return null;
     }
+    @Override
     public String toString() {
         String out = this.getName() + "----" + this.getSize() + ": ";         
         for(Card c : stack)
