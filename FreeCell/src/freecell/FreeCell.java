@@ -31,6 +31,8 @@ public class FreeCell {
         state.printState();        
         state.move("T0", "H0");
         state.printState();
+        state.move("T0", "H0");
+        state.printState();
 
         
 

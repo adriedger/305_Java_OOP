@@ -5,9 +5,8 @@
  */
 package freecell;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  *
@@ -19,7 +18,9 @@ public class Cell {
     private String name;
     
     public Cell(List<Card> start, String name){
-        stack = start;
+        stack = new ArrayList<>();
+        for (Card c : start)
+            stack.add (c);        
         this.name = name;
     }
     
@@ -49,16 +50,9 @@ public class Cell {
     public void move(Cell dest){
         if(this.canMoveFrom() && dest.canMoveTo(this.getTop())){            
             System.out.println("Succesfull Move!");
-            dest.stack.add(this.getTop());
-            this.stack.remove(this.getTop());
-            /*
-            ListIterator litr = stack.listIterator();
-            while(litr.hasNext()){
-                Object obj = litr.next();
-                if(obj.equals(this.getTop()))
-                    litr.remove();
-            }
-            */
+            Card c = this.getTop();
+            dest.stack.add(c);
+            this.stack.remove(c);
         }
         else
             System.out.println("Illegal Move");
