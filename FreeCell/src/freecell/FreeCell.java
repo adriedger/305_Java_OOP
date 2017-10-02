@@ -39,7 +39,7 @@ public class FreeCell {
             state.move(str1, str2);
             state.printState();
         }
-       
+        System.out.println("You Win!");
     }
     
     
