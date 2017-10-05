@@ -1,6 +1,7 @@
 package  midterm1;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 /**
  * A simplistic BankAccount class.
@@ -17,10 +18,11 @@ public class BankAccount {
      * Constructs a BankAccount object.
      * This constructor sets the account number to the given account number and
      * the account balance to zero.
-     * @param accountNumber 
+     * @param inNumber 
      */
-    public BankAccount(int accountNumber) {
-        
+    public BankAccount(int inNumber) {
+        accountNumber = inNumber;
+        balance = new BigDecimal("0");        
     }
     
     /**
@@ -28,11 +30,12 @@ public class BankAccount {
      * deposit. 
      * This constructor sets the account number to the given account number and
      * the account balance to the initial deposit.
-     * @param accountNumber
+     * @param inNumber
      * @param initialDeposit 
      */
-    public BankAccount(int accountNumber, BigDecimal initialDeposit) {
-        
+    public BankAccount(int inNumber, BigDecimal initialDeposit) {
+        accountNumber = inNumber;
+        balance = initialDeposit;        
     }
     
     /**
@@ -41,7 +44,8 @@ public class BankAccount {
      * @param account 
      */
     public BankAccount(BankAccount account) {
-
+        accountNumber = account.getAccountNumber();
+        balance = account.getBalance();        
     }
     
     /**
@@ -51,7 +55,16 @@ public class BankAccount {
      * @param amount 
      */
     public void withdraw(BigDecimal amount) {
-
+        if(amount.compareTo(new BigDecimal("0")) == 1){
+//            System.out.println("amount > 0");
+            if(!(this.balance.subtract(amount).compareTo(new BigDecimal("0")) == -1)){
+                this.balance = this.balance.subtract(amount);
+            }
+            else
+                throw new IllegalArgumentException();
+        }
+        else
+            throw new IllegalArgumentException();
     }
     
     /**
@@ -78,7 +91,8 @@ public class BankAccount {
      * @param recipient 
      */
     public void transfer(BigDecimal amount, BankAccount recipient) {
-
+        this.withdraw(amount);
+        recipient.deposit(amount);
     }
     
     /**
@@ -87,7 +101,15 @@ public class BankAccount {
      * @param amount 
      */
     public void deposit(BigDecimal amount) {
-
+        if(amount.compareTo(new BigDecimal("0")) == 1){
+            this.balance = this.balance.add(amount);
+        }
+        else
+            throw new IllegalArgumentException();            
     }
     
+    @Override
+    public String toString(){
+        return this.accountNumber + " (" + NumberFormat.getCurrencyInstance().format(this.balance) + ")";       
+    }
 }

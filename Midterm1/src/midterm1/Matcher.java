@@ -1,5 +1,6 @@
 package midterm1;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -14,6 +15,7 @@ import java.util.Map;
  * non-overlapping brackets (see the Java Collections Framework slides).
  */
 public class Matcher {
+    private Map<Character, Character> pair; 
 
     
     /**
@@ -23,6 +25,7 @@ public class Matcher {
      * @param pairs 
      */
     public Matcher(Map<Character, Character> pairs) {
+        pair = pairs;
 
     }
     
@@ -32,6 +35,10 @@ public class Matcher {
      * @return 
      */
     public boolean match(String s) {
+        
+        for(Character a : pair.keySet()){
+            return s.contains(a);
+        }
         return false;
     }
     

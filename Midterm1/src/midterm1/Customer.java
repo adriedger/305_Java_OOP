@@ -25,10 +25,15 @@ import java.util.Set;
  * should work properly without any modification.
  */
 public class Customer {
+    private String name;
+    private String address;
+    private Set<BankAccount> bankAccounts;
 
     
-    public Customer(String name, String address) {
-
+    public Customer(String inName, String inAddress) {
+        name = inName;
+        address = inAddress;
+        bankAccounts = new HashSet<>();
     }
     
     /**
@@ -36,31 +41,42 @@ public class Customer {
      * @param customer 
      */
     public Customer(Customer customer) {
+        name = customer.getName();
+        address = customer.getAddress();
+        bankAccounts = new HashSet<>();
+        bankAccounts.addAll(customer.getAccounts());
 
     }
     
     public void add(BankAccount account) {
+        bankAccounts.add(account);
         
     }
     
     public void remove(BankAccount account) {
-        
+        bankAccounts.remove(account);
     }
     
     public String getAddress() {
-        return "";
+        return address;
     }
     
     public String getName() {
-        return "";
+        return name;
     }
     
     public BigDecimal getTotalBalance() {
-        return BigDecimal.ZERO;
+        BigDecimal total = new BigDecimal("0");
+        for(BankAccount b : bankAccounts){
+            total = total.add(b.getBalance());
+        }
+        return total;
     }
     
     public Set getAccounts() {
-        return new HashSet();
+        Set<BankAccount> copy = new HashSet<>();
+        copy.addAll(bankAccounts);
+        return copy;
     }
     
 }
