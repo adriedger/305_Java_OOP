@@ -75,7 +75,8 @@ public class Customer {
     
     public Set getAccounts() {
         Set<BankAccount> copy = new HashSet<>();
-        copy.addAll(bankAccounts);
+        for (BankAccount b : bankAccounts)
+            copy.add(new BankAccount (b));
         return copy;
     }
     

@@ -25,6 +25,7 @@ public enum Suit {
     
     public boolean isRed() {return isRed;}
     public char getSymbol() {return unicode;}
+    
     public boolean isDiffColor(Card dest){
         return dest.getSuit().isRed() != this.isRed();
     }

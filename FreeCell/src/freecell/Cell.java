@@ -42,9 +42,10 @@ public class Cell {
     
     public boolean canMoveFrom(){return false;}
     public boolean canMoveTo(Card moving){return false;}
+    public boolean isTableau(){return this.getName().charAt(0) == 'T';}
     
     public void move(Cell dest){
-        if(this.getName().charAt(0) == 'T' && dest.getName().charAt(0) == 'T'){
+        if(this.isTableau() && dest.isTableau()){
             if(this.canMoveFrom() && dest.canMoveTo(this.getSubstackTop())){
                 System.out.println("Succesfull Move!");
                 this.stackAddRemove(dest);

@@ -33,14 +33,11 @@ public class FreeCell {
         while(!state.winCheck()){
             Scanner console = new Scanner(System.in);
             System.out.printf("Your move <from to>: ");
-            String str1, str2;
-            str1 = console.next();
-            str2 = console.next();
+            String str1 = console.next();
+            String str2 = console.next();
             state.move(str1, str2);
             state.printState();
         }
         System.out.println("You Win!");
     }
-    
-    
 }

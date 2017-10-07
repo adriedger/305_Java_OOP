@@ -34,6 +34,7 @@ public enum Rank {
     
     public char getSymbol() {return symbol;}
     public int getValue() {return value;}
+    
     public boolean isNextLess(Card compare) {
         return this.getValue() == (compare.getRank().getValue()-1);
     }  

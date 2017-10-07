@@ -36,11 +36,11 @@ public class Matcher {
      */
     public boolean match(String s) {
         
-        for(Character a : pair.keySet()){
-            return s.contains(a);
+        Stack<Character> process = new Stack<>();
+        
+        for(int i = 0; i < s.length(); i++){
+            char next = s.charAt(i);
+           
         }
-        return false;
-    }
-    
-
+    }    
 }

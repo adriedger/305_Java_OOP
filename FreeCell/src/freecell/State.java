@@ -1,5 +1,5 @@
 /*
- * Macewan University CMPT 305 Professor:Brian Brookwell
+ * Macewan University CMPT 305 Professor: Brian Brookwell
  */
 package freecell;
 
@@ -36,7 +36,7 @@ public class State {
     }
 
     private Cell getCell(String name){
-        Cell cell = Tabs.get(0);
+        Cell cell = Homes.get(0);
         for(Tableau t: Tabs){
             if(name.equals(t.getName()))
                 cell = t;        

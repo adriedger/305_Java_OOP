@@ -6,6 +6,7 @@
 package freecell;
 
 import java.util.ArrayList;
+
 /**
  *
  * @author Andre

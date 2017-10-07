@@ -35,6 +35,7 @@ public class BankAccount {
      */
     public BankAccount(int inNumber, BigDecimal initialDeposit) {
         accountNumber = inNumber;
+        balance = new BigDecimal("0");
         balance = initialDeposit;        
     }
     
@@ -45,6 +46,7 @@ public class BankAccount {
      */
     public BankAccount(BankAccount account) {
         accountNumber = account.getAccountNumber();
+        balance = new BigDecimal("0");
         balance = account.getBalance();        
     }
     
@@ -72,7 +74,8 @@ public class BankAccount {
      * @return balance 
      */
     public BigDecimal getBalance() {
-        return balance;
+        return new BigDecimal(balance.toString());
+        
     }
     
     /**
@@ -111,5 +114,19 @@ public class BankAccount {
     @Override
     public String toString(){
         return this.accountNumber + " (" + NumberFormat.getCurrencyInstance().format(this.balance) + ")";       
+    }
+    //for the .size for the hash set
+    @Override
+    public boolean equals(Object o){
+        if(o instanceof BankAccount)
+            return this.accountNumber == ((BankAccount) o).accountNumber;
+        return false;        
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 23 * hash + this.accountNumber;
+        return hash;
     }
 }
