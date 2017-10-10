@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author adriedger
+ * *
+ * @author Andre Driedger
+ * Contains the game state -> all the cells and their methods 
  */
 public class State {
     
@@ -16,6 +17,10 @@ public class State {
     private List<Free> Frees = new ArrayList<>();
     private List<Home> Homes = new ArrayList<>();
     
+    /**
+     * @param deck shuffled deck of 52 cards
+     * All 8 Tableaus get dealt cards from deck
+     */
     public State(List<Card> deck){
         Tabs.add(new Tableau(deck.subList(0, 7), "T0"));
         Tabs.add(new Tableau(deck.subList(7, 14), "T1"));
@@ -34,7 +39,11 @@ public class State {
         Homes.add(new Home("H2"));
         Homes.add(new Home("H3"));
     }
-
+    
+    /**
+     * @param name String to compare with Cell names
+     * @return Cell which matches input string
+     */
     private Cell getCell(String name){
         Cell cell = Homes.get(0);
         for(Tableau t: Tabs){
@@ -52,10 +61,16 @@ public class State {
         return cell;
     }
         
+    /**
+     * @param origin Cell name of the move origin
+     * @param dest Cell name of the destination of the move attempt
+     */
     public void move(String origin, String dest){
         this.getCell(origin).move(this.getCell(dest));        
     }
-    
+    /**
+     * Prints the contents of each Cell
+     */
     public void printState(){       
         for(Tableau t: Tabs)
             System.out.println(t.toString());            
@@ -64,7 +79,9 @@ public class State {
         for(Home h : Homes)
             System.out.println(h.toString());                       
     }
-    
+    /**
+     * @return true if all FreeCell stacks are complete
+     */
     public boolean winCheck(){
         return Homes.get(0).isComplete() && Homes.get(1).isComplete() &&
                 Homes.get(2).isComplete() && Homes.get(3).isComplete();

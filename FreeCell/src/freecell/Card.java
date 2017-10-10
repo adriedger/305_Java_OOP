@@ -1,18 +1,21 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Macewan University CMPT 305 Professor: Brian Brookwell
  */
 package freecell;
 
 /**
  *
- * @author Andre
+ * @author Andre Driedger
+ * Card class has a Rank and a Suit
  */
 public class Card {
     private Rank rank;
     private Suit suit;
     
+    /**
+     * @param suit Suit of card
+     * @param rank Rank of card
+     */
     public Card(Rank rank, Suit suit){
         this.rank = rank;
         this.suit = suit;

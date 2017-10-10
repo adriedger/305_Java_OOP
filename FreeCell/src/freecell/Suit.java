@@ -1,13 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Macewan University CMPT 305 Professor: Brian Brookwell
  */
 package freecell;
 
 /**
  *
- * @author Andre
+ * @author Andre Driedger
+ * Suit enum of playing card suits and their corresponding symbols
  */
 public enum Suit {
     HEARTS(true, '\u2665'),
@@ -26,9 +25,18 @@ public enum Suit {
     public boolean isRed() {return isRed;}
     public char getSymbol() {return unicode;}
     
+    /**
+     * @param dest Card to check if it is a different color
+     * @return true if different color
+     */
     public boolean isDiffColor(Card dest){
         return dest.getSuit().isRed() != this.isRed();
     }
+    
+    /**
+     * @param compare Card to check if it is the same suit
+     * @return true if its the same suit;
+     */
     public boolean isSameSuit(Card compare){
         return this.equals(compare.getSuit());
     }

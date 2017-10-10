@@ -1,13 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Macewan University CMPT 305 Professor: Brian Brookwell
  */
 package freecell;
 
 /**
  *
- * @author Andre
+ * @author Andre Driedger
+ * Rank enum of playing card ranks and their corresponding symbols
  */
 public enum Rank {
     ACE('A', 1),
@@ -35,6 +34,10 @@ public enum Rank {
     public char getSymbol() {return symbol;}
     public int getValue() {return value;}
     
+    /**
+     * @param compare Card to check if it is the next less rank
+     * @return true if next less rank
+     */
     public boolean isNextLess(Card compare) {
         return this.getValue() == (compare.getRank().getValue()-1);
     }  

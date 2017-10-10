@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Macewan University CMPT 305 Professor: Brian Brookwell
  */
 package freecell;
 
@@ -9,7 +7,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Andre
+ * @author Andre Driedger 
+ * Free class is a subclass of Cell, represents free cells in FreeCell
  */
 public class Free extends Cell {
     
@@ -17,10 +16,17 @@ public class Free extends Cell {
        super(new ArrayList<>(), name);
     }
     
+    /**
+     * @return true if there are cards in the stack
+     */
     @Override
     public boolean canMoveFrom(){
         return super.getSize() > 0;        
     }
+    /**
+     * @param moving Card to check if move to cell is legal
+     * @return true if stack is empty
+     */
     @Override
     public boolean canMoveTo(Card moving){
         return super.isEmpty();

@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Macewan University CMPT 305 Professor: Brian Brookwell
  */
 package freecell;
 
@@ -12,11 +10,14 @@ import java.util.Scanner;
 
 /**
  *
- * @author Andre
+ * @author Andre Driedger
+ * contains main function of game
  */
 public class FreeCell {
 
     /**
+     * deals cards into deck, initializes game state
+     * while loop processes moves and checks for win condition
      * @param args the command line arguments
      */
     public static void main(String[] args) {
