@@ -13,31 +13,29 @@ import java.util.List;
  */
 public class State {
     
-    private List<Tableau> Tabs = new ArrayList<>();    
-    private List<Free> Frees = new ArrayList<>();
-    private List<Home> Homes = new ArrayList<>();
+    private List<Cell> Cells = new ArrayList<>();
     
     /**
      * @param deck shuffled deck of 52 cards
      * All 8 Tableaus get dealt cards from deck
      */
     public State(List<Card> deck){
-        Tabs.add(new Tableau(deck.subList(0, 7), "T0"));
-        Tabs.add(new Tableau(deck.subList(7, 14), "T1"));
-        Tabs.add(new Tableau(deck.subList(14, 21), "T2"));
-        Tabs.add(new Tableau(deck.subList(21, 28), "T3"));
-        Tabs.add(new Tableau(deck.subList(28, 34), "T4"));
-        Tabs.add(new Tableau(deck.subList(34, 40), "T5"));
-        Tabs.add(new Tableau(deck.subList(40, 46), "T6"));
-        Tabs.add(new Tableau(deck.subList(46, 52), "T7"));
-        Frees.add(new Free("F0"));
-        Frees.add(new Free("F1"));
-        Frees.add(new Free("F2"));
-        Frees.add(new Free("F3"));
-        Homes.add(new Home("H0"));
-        Homes.add(new Home("H1"));
-        Homes.add(new Home("H2"));
-        Homes.add(new Home("H3"));
+        Cells.add(new Tableau(deck.subList(0, 7), "T0"));
+        Cells.add(new Tableau(deck.subList(7, 14), "T1"));
+        Cells.add(new Tableau(deck.subList(14, 21), "T2"));
+        Cells.add(new Tableau(deck.subList(21, 28), "T3"));
+        Cells.add(new Tableau(deck.subList(28, 34), "T4"));
+        Cells.add(new Tableau(deck.subList(34, 40), "T5"));
+        Cells.add(new Tableau(deck.subList(40, 46), "T6"));
+        Cells.add(new Tableau(deck.subList(46, 52), "T7"));
+        Cells.add(new Free("F0"));
+        Cells.add(new Free("F1"));
+        Cells.add(new Free("F2"));
+        Cells.add(new Free("F3"));
+        Cells.add(new Home("H0"));
+        Cells.add(new Home("H1"));
+        Cells.add(new Home("H2"));
+        Cells.add(new Home("H3"));
     }
     
     /**
@@ -45,18 +43,10 @@ public class State {
      * @return Cell which matches input string
      */
     private Cell getCell(String name){
-        Cell cell = Homes.get(0);
-        for(Tableau t: Tabs){
-            if(name.equals(t.getName()))
-                cell = t;        
-        }
-        for(Free f: Frees){
-            if(name.equals(f.getName()))
-                cell = f;           
-        }
-        for(Home h: Homes){
-            if(name.equals(h.getName()))
-                cell = h;            
+        Cell cell = Cells.get(0);
+        for(Cell c: Cells){
+            if(name.equals(c.getName()))
+                cell = c;        
         }
         return cell;
     }
@@ -68,22 +58,45 @@ public class State {
     public void move(String origin, String dest){
         this.getCell(origin).move(this.getCell(dest));        
     }
+    
     /**
      * Prints the contents of each Cell
      */
-    public void printState(){       
-        for(Tableau t: Tabs)
-            System.out.println(t.toString());            
-        for(Free f : Frees)
-            System.out.println(f.toString());            
-        for(Home h : Homes)
-            System.out.println(h.toString());                       
+    public void printState(){                
+        for(Cell c : Cells)
+            System.out.println(c.toString());                       
     }
+    
     /**
      * @return true if all FreeCell stacks are complete
      */
     public boolean winCheck(){
-        return Homes.get(0).isComplete() && Homes.get(1).isComplete() &&
-                Homes.get(2).isComplete() && Homes.get(3).isComplete();
+        return ((Home)Cells.get(12)).isComplete() && ((Home)Cells.get(13)).isComplete() &&
+                ((Home)Cells.get(14)).isComplete() && ((Home)Cells.get(15)).isComplete();
+    }
+    
+    private static class SavedState {
+        private List<Cell> savedState = new ArrayList<>();
+        
+        private SavedState(List<Cell> state){
+            savedState = copyState(state);
+            
+        }
+        
+        private List<Cell> getSavedState() {
+            return copyState(savedState);            
+        }
+        
+        private List<Cell> copyState(List<Cell> state) {
+
+            List<Cell> clonedState = new ArrayList<>();
+            
+            for(Cell c : state){
+                clonedState.add(c);
+            }
+            
+            return clonedState;
+        }
+        
     }
 }
