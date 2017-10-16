@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * *
+ * 
  * @author Andre Driedger
  * Contains the game state -> all the cells and their methods 
  */
 public class State {
     
     private List<Cell> Cells = new ArrayList<>();
+    private UndoRedoManager undoRedoManager;
     
     /**
      * @param deck shuffled deck of 52 cards
@@ -36,6 +37,8 @@ public class State {
         Cells.add(new Home("H1"));
         Cells.add(new Home("H2"));
         Cells.add(new Home("H3"));
+        
+        urManager().save(new SavedState(Cells));
     }
     
     /**
@@ -75,12 +78,38 @@ public class State {
                 ((Home)Cells.get(14)).isComplete() && ((Home)Cells.get(15)).isComplete();
     }
     
-    private static class SavedState {
+    public void setState(SavedState state) {
+        this.Cells = state.getSavedState();
+    }
+    
+    private UndoRedoManager urManager() {
+        if (undoRedoManager == null) {
+            undoRedoManager = new UndoRedoManager(this);
+        }
+        return undoRedoManager;
+    }
+    
+    public boolean canUndo() {
+        return urManager().canUndo();
+    }
+    
+    public boolean canRedo() {
+        return urManager().canRedo();
+    }
+    
+    public void undo() {
+        urManager().undo();
+    }
+    
+    public void redo() {
+        urManager().redo();
+    }
+    
+    public static class SavedState {
         private List<Cell> savedState = new ArrayList<>();
         
         private SavedState(List<Cell> state){
-            savedState = copyState(state);
-            
+            savedState = copyState(state);            
         }
         
         private List<Cell> getSavedState() {
@@ -88,7 +117,6 @@ public class State {
         }
         
         private List<Cell> copyState(List<Cell> state) {
-
             List<Cell> clonedState = new ArrayList<>();
             
             for(Cell c : state){
@@ -96,7 +124,6 @@ public class State {
             }
             
             return clonedState;
-        }
-        
+        }        
     }
 }
