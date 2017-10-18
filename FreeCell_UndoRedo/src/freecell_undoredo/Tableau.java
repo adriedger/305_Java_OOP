@@ -3,6 +3,7 @@
  */
 package freecell_undoredo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,5 +53,12 @@ public class Tableau extends Cell {
             next = super.getCard(count - 1);                  
         }
         return current;       
-    }        
+    }
+    
+    @Override
+    public Tableau deepCopy(){
+        Tableau copy = new Tableau(new ArrayList<>(), "");
+        super.copyElements(copy);
+        return copy;
+    }    
 }

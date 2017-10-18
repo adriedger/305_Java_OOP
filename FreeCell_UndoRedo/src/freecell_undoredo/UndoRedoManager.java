@@ -1,5 +1,5 @@
 /*
- * Macewan University CMPT 305 Proffesor:Brian Brookwell
+ * Macewan University CMPT 305 Proffesor: Brian Brookwell
  */
 package freecell_undoredo;
 
@@ -14,10 +14,10 @@ import freecell_undoredo.State.SavedState;
 public class UndoRedoManager { 
     private final List<SavedState> savedStates;
     private int currentIndex;
-    private State state;
+    private State currentState;
     
     public UndoRedoManager(State state){
-        this.state = state;
+        this.currentState = state;
         savedStates = new ArrayList<>();
         currentIndex = 0;        
     }
@@ -32,14 +32,20 @@ public class UndoRedoManager {
     
     public void undo() {
         if (canUndo()) {
-            state.setState(savedStates.get(--currentIndex));
+            currentState.setState(savedStates.get(--currentIndex));
+            System.out.println("Undo " + currentIndex);
         }
+        else
+            System.out.println("Cannot Undo");
     }
     
     public void redo() {
         if (canRedo()) {
-            state.setState(savedStates.get(++currentIndex));
-        }        
+            currentState.setState(savedStates.get(++currentIndex));
+            System.out.println("Redo " + currentIndex);
+        }
+        else
+            System.out.println("Cannot Redo");
     }
     
     public void save(SavedState savedState) {

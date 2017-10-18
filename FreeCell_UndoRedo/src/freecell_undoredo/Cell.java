@@ -66,31 +66,28 @@ public class Cell {
     
     /**
      * @param dest The destination Cell of attempted move
+     * @return true if legal move, false if not
      * This method checks if attempted move is a legal move.
-     * If its not a legal move, does nothing and prints to stdout Illegal Move.
-     * If it is legal move, it moves card(s) and prints to stdout Successful Move.
+     * If its not a legal move, does nothing. If it is legal move, it moves card(s)
      * If the origin and destination Cells are both Tableaus and legal, 
      * this method moves the substack instead of the single card.
      */
-    public void move(Cell dest){
+    public boolean move(Cell dest){
         if(this.isTableau() && dest.isTableau()){
             if(this.canMoveFrom() && dest.canMoveTo(this.getSubstackTop())){
-                System.out.println("Succesfull Move!");
                 this.stackAddRemove(dest);
+                return true;
             }
-            else
-                System.out.println("Illegal Move");
         }
         else{
             if(this.canMoveFrom() && dest.canMoveTo(this.getTop())){            
-                System.out.println("Succesfull Move!");
                 Card c = this.getTop();
                 dest.stack.add(c);
                 this.stack.remove(c);
+                return true;
             }
-            else
-                System.out.println("Illegal Move");
         }
+        return false;
     }
     
     /**
@@ -119,4 +116,16 @@ public class Cell {
         Collections.reverse(movingStack);
         dest.stack.addAll(movingStack);
     }
+    
+    public void copyElements(Cell copy){
+        List<Card> stackCopy = new ArrayList<>();
+        for(Card c : this.stack){
+            Card temp = c.deepCopy();
+            stackCopy.add(temp);
+        }
+        copy.stack = stackCopy;
+        copy.name = this.name;
+    }
+    
+    public Cell deepCopy(){return this;}
 }

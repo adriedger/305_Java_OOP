@@ -31,12 +31,24 @@ public class FreeCell {
         Collections.shuffle(deck);
         State state = new State(deck);
         state.printState();
-        while(!state.winCheck()){
-            Scanner console = new Scanner(System.in);
-            System.out.printf("Your move <from to>: ");
-            String str1 = console.next();
-            String str2 = console.next();
-            state.move(str1, str2);
+        Scanner console = new Scanner(System.in);
+        while(!state.winCheck()){           
+            System.out.printf("Your move <from to> | U to undo | R to redo: ");
+            String line = console.nextLine();
+            Scanner tokenizer = new Scanner(line);
+            String str1 = tokenizer.next();
+            if(tokenizer.hasNext()){
+                String str2 = tokenizer.next();
+                state.move(str1, str2);
+            }
+            else{
+                if(str1.equals("U"))
+                    state.undo();
+                if(str1.equals("R"))
+                    state.redo();
+                if(str1.equals("0"))
+                    break;
+            }
             state.printState();
         }
         System.out.println("You Win!");

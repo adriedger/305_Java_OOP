@@ -35,4 +35,11 @@ public class Home extends Cell {
         }
         return super.getTop().getRank().isNextLess(moving) && super.getTop().getSuit().isSameSuit(moving);
     }
+    
+    @Override
+    public Home deepCopy(){
+        Home copy = new Home("");
+        super.copyElements(copy);
+        return copy;
+    } 
 }

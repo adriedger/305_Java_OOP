@@ -31,4 +31,11 @@ public class Free extends Cell {
     public boolean canMoveTo(Card moving){
         return super.isEmpty();
     }
+    
+    @Override
+    public Free deepCopy(){
+        Free copy = new Free("");
+        super.copyElements(copy);
+        return copy;
+    } 
 }

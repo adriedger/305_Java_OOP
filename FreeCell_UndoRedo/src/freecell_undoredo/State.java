@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class State {
     
-    private List<Cell> Cells = new ArrayList<>();
+    private List<Cell> cells = new ArrayList<>();
     private UndoRedoManager undoRedoManager;
     
     /**
@@ -21,24 +21,24 @@ public class State {
      * All 8 Tableaus get dealt cards from deck
      */
     public State(List<Card> deck){
-        Cells.add(new Tableau(deck.subList(0, 7), "T0"));
-        Cells.add(new Tableau(deck.subList(7, 14), "T1"));
-        Cells.add(new Tableau(deck.subList(14, 21), "T2"));
-        Cells.add(new Tableau(deck.subList(21, 28), "T3"));
-        Cells.add(new Tableau(deck.subList(28, 34), "T4"));
-        Cells.add(new Tableau(deck.subList(34, 40), "T5"));
-        Cells.add(new Tableau(deck.subList(40, 46), "T6"));
-        Cells.add(new Tableau(deck.subList(46, 52), "T7"));
-        Cells.add(new Free("F0"));
-        Cells.add(new Free("F1"));
-        Cells.add(new Free("F2"));
-        Cells.add(new Free("F3"));
-        Cells.add(new Home("H0"));
-        Cells.add(new Home("H1"));
-        Cells.add(new Home("H2"));
-        Cells.add(new Home("H3"));
+        cells.add(new Tableau(deck.subList(0, 7), "T0"));
+        cells.add(new Tableau(deck.subList(7, 14), "T1"));
+        cells.add(new Tableau(deck.subList(14, 21), "T2"));
+        cells.add(new Tableau(deck.subList(21, 28), "T3"));
+        cells.add(new Tableau(deck.subList(28, 34), "T4"));
+        cells.add(new Tableau(deck.subList(34, 40), "T5"));
+        cells.add(new Tableau(deck.subList(40, 46), "T6"));
+        cells.add(new Tableau(deck.subList(46, 52), "T7"));
+        cells.add(new Free("F0"));
+        cells.add(new Free("F1"));
+        cells.add(new Free("F2"));
+        cells.add(new Free("F3"));
+        cells.add(new Home("H0"));
+        cells.add(new Home("H1"));
+        cells.add(new Home("H2"));
+        cells.add(new Home("H3"));
         
-        urManager().save(new SavedState(Cells));
+        urManager().save(new SavedState(cells));
     }
     
     /**
@@ -46,8 +46,8 @@ public class State {
      * @return Cell which matches input string
      */
     private Cell getCell(String name){
-        Cell cell = Cells.get(0);
-        for(Cell c: Cells){
+        Cell cell = cells.get(0);
+        for(Cell c: cells){
             if(name.equals(c.getName()))
                 cell = c;        
         }
@@ -57,16 +57,23 @@ public class State {
     /**
      * @param origin Cell name of the move origin
      * @param dest Cell name of the destination of the move attempt
+     * Outputs the legality of move
      */
     public void move(String origin, String dest){
-        this.getCell(origin).move(this.getCell(dest));        
+//        urManager().save(new SavedState(cells));
+        if(this.getCell(origin).move(this.getCell(dest))){
+            System.out.println("Successful Move!");
+            urManager().save(new SavedState(cells));
+        }
+        else
+            System.out.println("Illegal Move");
     }
     
     /**
-     * Prints the contents of each Cell
+     * Outputs contents of each Cell
      */
     public void printState(){                
-        for(Cell c : Cells)
+        for(Cell c : cells)
             System.out.println(c.toString());                       
     }
     
@@ -74,27 +81,20 @@ public class State {
      * @return true if all FreeCell stacks are complete
      */
     public boolean winCheck(){
-        return ((Home)Cells.get(12)).isComplete() && ((Home)Cells.get(13)).isComplete() &&
-                ((Home)Cells.get(14)).isComplete() && ((Home)Cells.get(15)).isComplete();
+        return ((Home)cells.get(12)).isComplete() && ((Home)cells.get(13)).isComplete() &&
+                ((Home)cells.get(14)).isComplete() && ((Home)cells.get(15)).isComplete();
     }
     
     public void setState(SavedState state) {
-        this.Cells = state.getSavedState();
+        this.cells = state.getSavedState();
     }
     
     private UndoRedoManager urManager() {
         if (undoRedoManager == null) {
+            System.out.println("Undo/Redo Manager Initialized");
             undoRedoManager = new UndoRedoManager(this);
         }
         return undoRedoManager;
-    }
-    
-    public boolean canUndo() {
-        return urManager().canUndo();
-    }
-    
-    public boolean canRedo() {
-        return urManager().canRedo();
     }
     
     public void undo() {
@@ -108,22 +108,19 @@ public class State {
     public static class SavedState {
         private List<Cell> savedState = new ArrayList<>();
         
-        private SavedState(List<Cell> state){
-            savedState = copyState(state);            
+        private SavedState(List<Cell> cells){
+            savedState = copyState(cells);            
         }
         
-        private List<Cell> getSavedState() {
-            return copyState(savedState);            
-        }
+        private List<Cell> getSavedState() {return savedState;}
         
-        private List<Cell> copyState(List<Cell> state) {
-            List<Cell> clonedState = new ArrayList<>();
-            
-            for(Cell c : state){
-                clonedState.add(c);
+        private List<Cell> copyState(List<Cell> cells) {
+            List<Cell> clonedState = new ArrayList<>();           
+            for(Cell c : cells){
+                Cell copy = c.deepCopy();
+                clonedState.add(copy);
             }
-            
             return clonedState;
-        }        
+        }
     }
 }
