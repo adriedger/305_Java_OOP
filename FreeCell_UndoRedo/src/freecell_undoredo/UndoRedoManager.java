@@ -1,5 +1,5 @@
 /*
- * Macewan University CMPT 305 Proffesor: Brian Brookwell
+ * Macewan University CMPT 305 Professor: Brian Brookwell
  */
 package freecell_undoredo;
 

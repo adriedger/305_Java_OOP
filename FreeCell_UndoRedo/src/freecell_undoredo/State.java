@@ -43,24 +43,22 @@ public class State {
     
     /**
      * @param name String to compare with Cell names
-     * @return Cell which matches input string
+     * @return Cell which matches input string or a new generic Cell -> Illegal Move
      */
     private Cell getCell(String name){
-        Cell cell = cells.get(0);
         for(Cell c: cells){
             if(name.equals(c.getName()))
-                cell = c;        
+                return c;        
         }
-        return cell;
+        return new Cell(new ArrayList<>(), "null");
     }
         
     /**
      * @param origin Cell name of the move origin
      * @param dest Cell name of the destination of the move attempt
-     * Outputs the legality of move
+     * Outputs to console the legality of move
      */
     public void move(String origin, String dest){
-//        urManager().save(new SavedState(cells));
         if(this.getCell(origin).move(this.getCell(dest))){
             System.out.println("Successful Move!");
             urManager().save(new SavedState(cells));
@@ -70,7 +68,7 @@ public class State {
     }
     
     /**
-     * Outputs contents of each Cell
+     * Outputs to console contents of each Cell
      */
     public void printState(){                
         for(Cell c : cells)
@@ -109,18 +107,12 @@ public class State {
         private List<Cell> savedState = new ArrayList<>();
         
         private SavedState(List<Cell> cells){
-            savedState = copyState(cells);            
+            for(Cell c : cells){
+                Cell copy = c.deepCopy();
+                savedState.add(copy);
+            }            
         }
         
         private List<Cell> getSavedState() {return savedState;}
-        
-        private List<Cell> copyState(List<Cell> cells) {
-            List<Cell> clonedState = new ArrayList<>();           
-            for(Cell c : cells){
-                Cell copy = c.deepCopy();
-                clonedState.add(copy);
-            }
-            return clonedState;
-        }
     }
 }
