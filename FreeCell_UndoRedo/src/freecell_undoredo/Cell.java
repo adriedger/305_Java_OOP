@@ -8,9 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * *
+ * Cell class is the parent class of the different Cells types in FreeCell.
  * @author Andre Driedger
- * Cell class is parent class of the different Cells in FreeCell
  */
 public class Cell {
     
@@ -18,7 +17,8 @@ public class Cell {
     private String name;
     
     /**
-     * @param start list of cards dealt into cell when game starts
+     * Class Constructor.
+     * @param start List of cards dealt into cell when game starts
      * @param name 2 char string name of the Cell 
      */
     public Cell(List<Card> start, String name){
@@ -65,12 +65,12 @@ public class Cell {
     public boolean isTableau(){return this.getName().charAt(0) == 'T';}
     
     /**
-     * @param dest The destination Cell of attempted move
-     * @return true if legal move, false if not
      * This method checks if attempted move is a legal move.
-     * If its not a legal move, does nothing. If it is legal move, it moves card(s)
+     * If its not a legal move, does nothing. If its a legal move, it moves the card(s).
      * If the origin and destination Cells are both Tableaus and legal, 
      * this method moves the substack instead of the single card.
+     * @param dest The destination Cell of attempted move
+     * @return true if legal move, false if not 
      */
     public boolean move(Cell dest){
         if(this.isTableau() && dest.isTableau()){
@@ -91,10 +91,11 @@ public class Cell {
     }
     
     /**
-     * @param dest The destination Cell of the stack move
      * This method removes the substack (stack of cards which match the Solitaire 
      * stack pattern of next less rank and alternating colors) and appends it to 
-     * destination Cell
+     * destination Cell.
+     * @param dest The destination Cell of the stack move
+     * 
      */
     private void stackAddRemove(Cell dest){
         List<Card> movingStack = new ArrayList<>();

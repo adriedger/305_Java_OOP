@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * Contains the current game state. All the cells and their methods.
  * @author Andre Driedger
- * Contains the game state -> all the cells and their methods 
  */
 public class State {
     
@@ -17,8 +16,8 @@ public class State {
     private UndoRedoManager undoRedoManager;
     
     /**
+     * Class Constructor. Tableau cells get dealt cards from deck.
      * @param deck shuffled deck of 52 cards
-     * All 8 Tableaus get dealt cards from deck
      */
     public State(List<Card> deck){
         cells.add(new Tableau(deck.subList(0, 7), "T0"));
@@ -43,7 +42,7 @@ public class State {
     
     /**
      * @param name String to compare with Cell names
-     * @return Cell which matches input string or a new generic Cell -> Illegal Move
+     * @return Cell which matches input string or a new generic Cell (leads to Illegal Move)
      */
     private Cell getCell(String name){
         for(Cell c: cells){
@@ -54,9 +53,9 @@ public class State {
     }
         
     /**
+     * Attempts to move card/substack. Outputs to console the legality of move
      * @param origin Cell name of the move origin
      * @param dest Cell name of the destination of the move attempt
-     * Outputs to console the legality of move
      */
     public void move(String origin, String dest){
         if(this.getCell(origin).move(this.getCell(dest))){
@@ -68,7 +67,7 @@ public class State {
     }
     
     /**
-     * Outputs to console contents of each Cell
+     * Outputs to console contents of each Cell.
      */
     public void printState(){                
         for(Cell c : cells)

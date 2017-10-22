@@ -9,15 +9,14 @@ import java.util.Collections;
 import java.util.Scanner;
 
 /**
- *
+ * Main class of text-based FreeCell game. 
  * @author Andre Driedger
- * contains main function of game
  */
 public class FreeCell {
 
     /**
-     * deals cards into deck, initializes game state
-     * while loop processes moves and checks for win condition
+     * Deals cards into deck, initializes game state.
+     * While loop processes moves and checks for win condition.
      * @param args the command line arguments
      */
     public static void main(String[] args) {
