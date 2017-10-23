@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Andre Driedger 
  * Tableau class is a subclass of Cell, represents tableau cells in FreeCell
+ * @author Andre Driedger 
  */
 public class Tableau extends Cell {
     
@@ -55,6 +54,9 @@ public class Tableau extends Cell {
         return current;       
     }
     
+    /**
+     * @return new deep copy of Tableau cell
+     */
     @Override
     public Tableau deepCopy(){
         Tableau copy = new Tableau(new ArrayList<>(), "");

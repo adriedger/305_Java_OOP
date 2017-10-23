@@ -32,7 +32,7 @@ public class FreeCell {
         state.printState();
         Scanner console = new Scanner(System.in);
         while(!state.winCheck()){           
-            System.out.printf("Your move <from to> | U to undo | R to redo: ");
+            System.out.printf("Your move <from to> | U to undo | R to redo | 0 to exit: ");
             String line = console.nextLine();
             Scanner tokenizer = new Scanner(line);
             String str1 = tokenizer.next();
@@ -46,7 +46,7 @@ public class FreeCell {
                 if(str1.equals("R"))
                     state.redo();
                 if(str1.equals("0"))
-                    break;
+                    System.exit(0);
             }
             state.printState();
         }

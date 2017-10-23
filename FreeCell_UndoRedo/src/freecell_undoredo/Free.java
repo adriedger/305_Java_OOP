@@ -6,9 +6,8 @@ package freecell_undoredo;
 import java.util.ArrayList;
 
 /**
- *
- * @author Andre Driedger 
  * Free class is a subclass of Cell, represents free cells in FreeCell
+ * @author Andre Driedger 
  */
 public class Free extends Cell {
     
@@ -32,6 +31,9 @@ public class Free extends Cell {
         return super.isEmpty();
     }
     
+    /**
+     * @return new deep copy of Free cell
+     */
     @Override
     public Free deepCopy(){
         Free copy = new Free("");

@@ -28,6 +28,9 @@ public class Card {
     public Rank getRank() {return rank;}
     public Suit getSuit() {return suit;}
     
+    /**
+     * @return new deep copy of Card
+     */
     public Card deepCopy(){
         Card copy = new Card(null, null);
         copy.rank = this.rank;

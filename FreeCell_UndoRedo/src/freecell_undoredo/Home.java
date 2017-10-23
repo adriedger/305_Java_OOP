@@ -6,9 +6,8 @@ package freecell_undoredo;
 import java.util.ArrayList;
 
 /**
- *
- * @author Andre Driedger 
  * Home class is a subclass of Cell, represents home cells in FreeCell
+ * @author Andre Driedger 
  */
 public class Home extends Cell {
     
@@ -36,6 +35,9 @@ public class Home extends Cell {
         return super.getTop().getRank().isNextLess(moving) && super.getTop().getSuit().isSameSuit(moving);
     }
     
+    /**
+     * @return new deep copy of Home cell
+     */
     @Override
     public Home deepCopy(){
         Home copy = new Home("");

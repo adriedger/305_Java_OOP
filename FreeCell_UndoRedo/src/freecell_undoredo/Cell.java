@@ -35,6 +35,7 @@ public class Cell {
      * @return Card at index
      */
     public Card getCard(int num) {return stack.get(num);}
+    
     public String getName() {return name;}
     
     /**
@@ -46,6 +47,7 @@ public class Cell {
      * @return Card at the top of stack (bottom-most facing the player)
      */
     public Card getTop() {return stack.get(stack.size()-1);}
+    
     public Card getSubstackTop(){return null;}
     
     @Override
@@ -57,6 +59,7 @@ public class Cell {
     }
     
     public boolean canMoveFrom(){return false;}
+    
     public boolean canMoveTo(Card moving){return false;}
     
     /**
@@ -95,7 +98,6 @@ public class Cell {
      * stack pattern of next less rank and alternating colors) and appends it to 
      * destination Cell.
      * @param dest The destination Cell of the stack move
-     * 
      */
     private void stackAddRemove(Cell dest){
         List<Card> movingStack = new ArrayList<>();
@@ -118,6 +120,10 @@ public class Cell {
         dest.stack.addAll(movingStack);
     }
     
+    /**
+     * Deep copies Cell name and all cards within Cell stack into new Cell copy
+     * @param copy New Cell to be copied
+     */
     public void copyElements(Cell copy){
         List<Card> stackCopy = new ArrayList<>();
         for(Card c : this.stack){
