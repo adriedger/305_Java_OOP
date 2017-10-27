@@ -82,10 +82,16 @@ public class State {
                 ((Home)cells.get(14)).isComplete() && ((Home)cells.get(15)).isComplete();
     }
     
+    /**
+    * @param state SavedState to change current state to.
+    */
     public void setState(SavedState state) {
         this.cells = state.getSavedState();
     }
     
+    /**
+    * @return current UndoRedoManager, if one does not yet exist it initializes one
+    */
     private UndoRedoManager urManager() {
         if (undoRedoManager == null) {
             System.out.println("Undo/Redo Manager Initialized");
@@ -94,14 +100,24 @@ public class State {
         return undoRedoManager;
     }
     
+    /**
+    * Sets current state to previous available saved state.
+    */
     public void undo() {
         urManager().undo();
     }
     
+    /**
+    * Sets current state to next available saved state.
+    */
     public void redo() {
         urManager().redo();
     }
     
+    /**
+    * Creates a deep copy of current State.
+    * @author Andre Driedger
+    */
     public static class SavedState {
         private List<Cell> savedState = new ArrayList<>();
         
