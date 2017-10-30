@@ -3,6 +3,9 @@
  */
 package lab4;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author adriedger
@@ -14,7 +17,6 @@ public class Lab4 {
      */
     public static void main(String[] args) {
         ReadDict reader = new ReadDict();
-        reader.buildMap();
-    }
-    
+        Map<String, List<String>> mapper = reader.buildMap();
+    }    
 }
