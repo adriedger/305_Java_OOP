@@ -7,9 +7,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  *
@@ -19,7 +21,7 @@ public class ReadDict {
     
     private File text = new File("dict.txt");
     private List<String> words = new ArrayList<>();
-    private Map<String, List<String>> map = new HashMap<>();
+    private Map<String, Node> map = new HashMap<>();
     
     public ReadDict(){
         try{
@@ -32,15 +34,15 @@ public class ReadDict {
         catch(IOException ex){
             System.out.println(ex);
         }
-        for(String s : words){
-            List<String> nearWords = new ArrayList<>();
-            for(String w : words){
-                if(isEditDistanceOne(s, w)){
-                    nearWords.add(w);
+        for(String key : words){
+            Node current = new Node(key);
+            for(String entry : words){
+                if(isEditDistanceOne(key, entry)){
+                    current.add(entry);
                 }
             }
-            map.put(s, nearWords);
-            System.out.println(s + nearWords);
+            map.put(key, current);
+//            System.out.println(key + current);
         }  
     }
     
@@ -66,76 +68,41 @@ public class ReadDict {
             if(count > 1)
                 return false;
         }
-        return count > 0;
-    }
-
-    private boolean checkInList(String str, List<String> list){
-        for(String s : list){
-            if(str.equals(s))
-                return true;
-        }
-        return false;
+        return count == 1;
     }
     
-    private String NextWord(String start, String end, List<String> queue){
-        //need to include replacement of char with nothin, addin a char ie words that do not match in length
-        int count = 0;
-            for(int i = 0; i < start.length(); i++){
-                if(start.charAt(i) == end.charAt(i)){
-                    count++;
-                }
-            }
-        int highest = count;
-        String nextWord = "";
-        
-        for(String entry : queue){
-            count = 0;
-            for(int i = 0; i < end.length(); i++){
-                if(end.charAt(i) == entry.charAt(i)){
-                    count++;
-                }
-            }
-            if(count > highest){
-                highest = count;
-                nextWord = entry;
+    public int calculateDistance(String start, String end){
+        List<Node> queue = new ArrayList<>();
+//        Node source;
+        int cost = 0;
+        for(Map.Entry<String, Node> entry : map.entrySet()){
+            if(start.equals(entry.getKey())){
+                Node source = entry.getValue();
+                source.setDistance(cost);
+                queue.add(source);
             }
         }
-        return nextWord;
-    }
-    
-    public int calculateEditDistance(String str1, String str2){
-        //if words dont equal
-        if(checkInList(str1, words) && checkInList(str2, words)){
-            int count = 1;
-            String currentWord = str1;
-            
-            while(!currentWord.equals("")){
-                List<String> queue = new ArrayList<>();
-                
-                for(Map.Entry<String, List<String>> entry : map.entrySet()){
-                    if(currentWord.equals(entry.getKey())){
-                        if(entry.getValue().isEmpty()){
-                            System.out.println("Edit distance: no path exists");
-                            return -1;
-                        }
-                        for(String e : entry.getValue())                           
-                            queue.add(e);
-                        if(checkInList(str2, queue)){
-                            System.out.println("Edit distance: " + count);
-                            return count; //done
-                        }
-                        currentWord = NextWord(currentWord, str2, queue);
-                        System.out.println(currentWord);
-                        count++;
+        while(!queue.isEmpty()){
+            Node current = queue.get(0);
+            System.out.println(current.getWord() + " " + current.getDistance());
+//            queue.remove(0);
+            if(current.getWord().equals(end))
+                return current.getDistance();
+            cost = current.getDistance() + 1;
+            for(String s : current.getList()){
+                Node link = null;
+                for(Map.Entry<String, Node> entry : map.entrySet()){
+                    if(s.equals(entry.getKey())){
+                        link = entry.getValue();
                     }
                 }
+                if(link.getDistance() > cost){
+                    link.setDistance(cost);
+                    queue.add(link);
+                }
             }
+            queue.remove(0);
         }
-        else{
-            System.out.println("Input word(s) not found in the dictionary");
-            return -1;
-        }
-        System.out.println("Edit distance: no path exists");
-        return -1;
+        return 1000000;
     }
 }

@@ -20,6 +20,7 @@ public class Lab4 {
         ReadDict reader = new ReadDict();
         Scanner console = new Scanner(System.in);
         String str1 = "";
+        int dist = 0;
         while(!str1.equals("0")){ 
             System.out.printf("Please enter two words (or 0 to quit): ");
             String line = console.nextLine();
@@ -27,8 +28,12 @@ public class Lab4 {
             str1 = tokenizer.next();
             if(tokenizer.hasNext()){
                 String str2 = tokenizer.next();
-                reader.calculateEditDistance(str1, str2);
+                dist = reader.calculateDistance(str1, str2);
             }
+            if(dist < 1000000)
+                System.out.println("Edit Distance: " + dist);
+            else
+                System.out.println("Edit Distance: No Path Found");
         }
     }    
 }
