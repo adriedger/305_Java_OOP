@@ -17,7 +17,7 @@ public class Lab4 {
     public static void main(String[] args) {
         System.out.println("Welcome to the edit distance calculator\n" +
                                 "Initializing dictionary...");
-        ReadDict reader = new ReadDict();
+        ReadDict reader = new ReadDict("dict.txt");
         Scanner console = new Scanner(System.in);
         String str1 = "";
         int dist = 0;
@@ -28,12 +28,16 @@ public class Lab4 {
             str1 = tokenizer.next();
             if(tokenizer.hasNext()){
                 String str2 = tokenizer.next();
-                dist = reader.calculateDistance(str1, str2);
+                if(reader.checkInDict(str1) && reader.checkInDict(str2)){
+                    dist = reader.calculateDistance(str1, str2);
+                    if(dist < 1000000)
+                        System.out.println("Edit distance: " + dist);
+                    else
+                        System.out.println("Edit distance: no path exists");
+                }
+                else
+                    System.out.println("Input word(s) not found in the dictionary");
             }
-            if(dist < 1000000)
-                System.out.println("Edit Distance: " + dist);
-            else
-                System.out.println("Edit Distance: No Path Found");
         }
     }    
 }

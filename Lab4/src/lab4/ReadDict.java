@@ -7,11 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 /**
  *
@@ -19,11 +17,11 @@ import java.util.Set;
  */
 public class ReadDict {
     
-    private File text = new File("dict.txt");
-    private List<String> words = new ArrayList<>();
     private Map<String, Node> map = new HashMap<>();
     
-    public ReadDict(){
+    public ReadDict(String path){
+        File text = new File(path);
+        List<String> words = new ArrayList<>();
         try{
             Scanner input = new Scanner(text);
             while(input.hasNextLine()){
@@ -42,7 +40,6 @@ public class ReadDict {
                 }
             }
             map.put(key, current);
-//            System.out.println(key + current);
         }  
     }
     
@@ -71,11 +68,19 @@ public class ReadDict {
         return count == 1;
     }
     
+    public boolean checkInDict(String str){
+        for(Map.Entry<String, Node> entry : map.entrySet()){
+            if(entry.getKey().equals(str))
+                return true;
+        }
+        return false;
+    }
+    
     public int calculateDistance(String start, String end){
         List<Node> queue = new ArrayList<>();
-//        Node source;
         int cost = 0;
         for(Map.Entry<String, Node> entry : map.entrySet()){
+            entry.getValue().setDistance(1000000);
             if(start.equals(entry.getKey())){
                 Node source = entry.getValue();
                 source.setDistance(cost);
@@ -84,8 +89,7 @@ public class ReadDict {
         }
         while(!queue.isEmpty()){
             Node current = queue.get(0);
-            System.out.println(current.getWord() + " " + current.getDistance());
-//            queue.remove(0);
+//            System.out.println(current.getWord() + " " + current.getDistance());
             if(current.getWord().equals(end))
                 return current.getDistance();
             cost = current.getDistance() + 1;
