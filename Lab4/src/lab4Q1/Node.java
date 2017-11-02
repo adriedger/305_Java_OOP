@@ -1,7 +1,7 @@
 /*
  * Macewan University CMPT 305 Professor: Brian Brookwell
  */
-package lab4;
+package lab4Q1;
 
 import java.util.HashSet;
 import java.util.Set;

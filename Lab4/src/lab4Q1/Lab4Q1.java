@@ -1,7 +1,7 @@
 /*
  * Macewan University CMPT 305 Professor: Brian Brookwell
  */
-package lab4;
+package lab4Q1;
 
 import java.util.Scanner;
 
@@ -9,7 +9,7 @@ import java.util.Scanner;
  *
  * @author adriedger
  */
-public class Lab4 {
+public class Lab4Q1 {
 
     /**
      * @param args the command line arguments
