@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Node class has the dictionary word, a list of words 1 edit distance away, and
+ * the current edit distance of the algorithm.
  *
  * @author adriedger
  */

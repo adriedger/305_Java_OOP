@@ -6,6 +6,8 @@ package lab4Q2;
 import java.awt.Rectangle;
 
 /**
+ * HandleRect contains Rectangle object and methods to manipulate and get 
+ * information from it
  *
  * @author adriedger
  */
@@ -26,11 +28,11 @@ public class HandleRect {
         rect.y = currentY;
     }
 
-    int getHeight() {return rect.height;}
+    public int getHeight() {return rect.height;}
 
-    int getWidth() {return rect.width;}
+    public int getWidth() {return rect.width;}
 
-    void resize(int currentHeight, int currentWidth) {
+    public void resize(int currentHeight, int currentWidth) {
         rect.height = currentHeight;
         rect.width = currentWidth;
     }

@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
+ * Saves dictionary text file entries into a map with the key as the String of the 
+ * word name (to identify the word) and the Node object of the word 
  *
  * @author adriedger
  */
@@ -19,6 +21,11 @@ public class ReadDict {
     
     private Map<String, Node> map = new HashMap<>();
     
+    /**
+     * Class Builder
+     *
+     * @param path string containing path to dictionary text file
+     */
     public ReadDict(String path){
         File text = new File(path);
         List<String> words = new ArrayList<>();
@@ -68,6 +75,11 @@ public class ReadDict {
         return count == 1;
     }
     
+    /**
+     * Checks if input string is in dictionary
+     *
+     * @param str Input string
+     */
     public boolean checkInDict(String str){
         for(Map.Entry<String, Node> entry : map.entrySet()){
             if(entry.getKey().equals(str))
@@ -76,6 +88,13 @@ public class ReadDict {
         return false;
     }
     
+    /**
+     * Main algorith that calcualtes the edit distance between 2 input words
+     *
+     * @param start Input word to start algorith from
+     * @param end Input of final destination word
+     * @return Edit distance of 2 input words. 1 million if no path is found
+     */
     public int calculateDistance(String start, String end){
         List<Node> queue = new ArrayList<>();
         int cost = 0;
@@ -89,7 +108,6 @@ public class ReadDict {
         }
         while(!queue.isEmpty()){
             Node current = queue.get(0);
-//            System.out.println(current.getWord() + " " + current.getDistance());
             if(current.getWord().equals(end))
                 return current.getDistance();
             cost = current.getDistance() + 1;

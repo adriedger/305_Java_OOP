@@ -3,6 +3,12 @@ package lab4Q2;
 import java.awt.Rectangle;
 
 public class Simulator {
+    
+    /**
+     * Main function of Lab4Q2
+     * 
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         // UndoManager is an object that manages command objects
         // You may use a different object to enable undo

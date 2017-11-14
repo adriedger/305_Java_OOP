@@ -4,6 +4,8 @@
 package lab4Q2;
 
 /**
+ * Command design pattern implementation handles movements of HandleRect objects 
+ * in x, y plane
  *
  * @author adriedger
  */

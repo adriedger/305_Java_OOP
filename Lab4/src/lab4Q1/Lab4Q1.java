@@ -6,12 +6,17 @@ package lab4Q1;
 import java.util.Scanner;
 
 /**
- *
+ * This text-based program finds the edit distance (the number of jumps between words 
+ * with characters that need to be switched, added or removed once to modify it to the next word)
+ * between  a start word and a destination word in a dictionary text file.
+ * 
  * @author adriedger
  */
 public class Lab4Q1 {
 
     /**
+     * Main function of Lab4Q1
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args) {

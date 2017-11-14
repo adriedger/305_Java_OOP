@@ -4,6 +4,7 @@
 package lab4Q2;
 
 /**
+ * Command design pattern implementation handles resizing of HandleRect objects
  *
  * @author adriedger
  */
