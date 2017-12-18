@@ -1,0 +1,2 @@
+I would use the command design pattern interface to create the methods that all products, components and suppliers can use to return their cost and list of requirements (if applicable). These methods are the Cost method and the Parts method.
+To allow future changes (new Products, new Suppliers, etc.) to be implemented easily I would use the factory method design pattern. It allows me to use an interface or abstract class to create a template for the objects, but then lets my sub classes decide the type of object to create. 
